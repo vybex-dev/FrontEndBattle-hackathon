@@ -151,7 +151,7 @@ export default function BentoAccordionWrapper() {
           >
             <div className="p-6 h-full flex flex-col relative z-10 group">
               {/* Premium Image Header */}
-              <div className="w-full h-32 md:h-48 mb-6 rounded-lg overflow-hidden relative border border-border-subtle group-hover:border-[var(--accent)] transition-colors duration-500" style={{ '--accent': `${feat.accentColor}50` } as any}>
+              <div className="w-full h-32 md:h-48 mb-6 rounded-lg overflow-hidden relative border border-border-subtle group-hover:border-[var(--accent)] transition-colors duration-500" style={{ '--accent': `${feat.accentColor}50` } as React.CSSProperties}>
                  <Image src={feat.image} alt={feat.title} fill className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
                  {/* Fade gradient so it blends into the card body */}
                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-80 pointer-events-none"></div>
