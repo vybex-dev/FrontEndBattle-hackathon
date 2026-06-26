@@ -16,6 +16,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [activeLink, setActiveLink]   = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -26,7 +27,8 @@ export default function Navbar() {
   // Close mobile menu on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (menuOpen && menuRef.current && !menuRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (menuOpen && menuRef.current && !menuRef.current.contains(target) && btnRef.current && !btnRef.current.contains(target)) {
         setMenuOpen(false);
       }
     };
@@ -100,6 +102,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
+          ref={btnRef}
           className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-forsythia"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}

@@ -12,18 +12,18 @@ interface WorkflowNodeProps {
 
 const WorkflowNode = ({ title, subtitle, icon, x, y, delay = 0, highlighted = false }: WorkflowNodeProps) => (
   <div 
-    className={`absolute rounded-xl border ${highlighted ? 'border-forsythia bg-oceanic-noir/90 glow-gold' : 'border-border-subtle glass'} p-3 md:p-4 flex flex-col min-w-[120px] md:min-w-[160px] transform transition-transform duration-500 hover:scale-105 z-10`}
+    className={`group absolute rounded-xl border ${highlighted ? 'border-forsythia bg-oceanic-noir/90 glow-gold' : 'border-border-subtle glass hover:border-forsythia/40 hover:bg-oceanic-noir/80 hover:shadow-[0_0_30px_rgba(255,200,1,0.15)]'} p-3 md:p-4 flex flex-col min-w-[120px] md:min-w-[160px] transform transition-all duration-500 hover:scale-110 z-10`}
     style={{ left: `${x}%`, top: `${y}%`, animation: `float 6s ease-in-out infinite ${delay}s` }}
   >
     {highlighted && (
       <div className="absolute inset-0 rounded-xl pointer-events-none border border-forsythia/30 animate-pulse-slow glow-gold z-[-1]"></div>
     )}
     <div className="flex items-center gap-2 mb-2">
-      <div className={`w-6 h-6 md:w-8 md:h-8 rounded flex items-center justify-center ${highlighted ? 'bg-forsythia/20' : 'bg-mystic-mint/10'}`}>
-        <Image src={icon} alt="" width={16} height={16} className={highlighted ? "brightness-[10]" : "opacity-70"} aria-hidden="true" />
+      <div className={`w-6 h-6 md:w-8 md:h-8 rounded flex items-center justify-center transition-colors duration-500 ${highlighted ? 'bg-forsythia/20' : 'bg-mystic-mint/10 group-hover:bg-forsythia/20'}`}>
+        <Image src={icon} alt="" width={16} height={16} className={`transition-all duration-500 ${highlighted ? "brightness-[10]" : "opacity-70 group-hover:brightness-[10] group-hover:opacity-100"}`} aria-hidden="true" />
       </div>
       <div className="flex-1">
-        <div className={`text-xs md:text-sm font-mono font-bold ${highlighted ? 'text-forsythia' : 'text-arctic-powder'}`}>{title}</div>
+        <div className={`text-xs md:text-sm font-mono font-bold transition-colors duration-500 ${highlighted ? 'text-forsythia' : 'text-arctic-powder group-hover:text-forsythia'}`}>{title}</div>
         <div className="text-[10px] md:text-xs text-mystic-mint/60">{subtitle}</div>
       </div>
     </div>

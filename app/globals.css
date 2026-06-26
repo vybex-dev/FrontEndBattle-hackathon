@@ -91,6 +91,7 @@ a, button, input, textarea, select, [role="button"], [tabindex="0"] {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .glass-dark {
@@ -98,6 +99,7 @@ a, button, input, textarea, select, [role="button"], [tabindex="0"] {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 /* ─── Glow effects ──────────────────────────────────────────────────────────── */
@@ -212,6 +214,7 @@ a, button, input, textarea, select, [role="button"], [tabindex="0"] {
   transition: transform var(--ease-micro-max), box-shadow var(--ease-micro-max), border-color var(--ease-micro-max);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .bento-card:hover,
@@ -302,6 +305,7 @@ a, button, input, textarea, select, [role="button"], [tabindex="0"] {
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   transition: transform var(--ease-micro-max), box-shadow var(--ease-micro-max), border-color var(--ease-micro-max);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .pricing-card:hover {
@@ -567,6 +571,7 @@ a, button, input, textarea, select, [role="button"], [tabindex="0"] {
   background: var(--color-surface);
   padding: 1.75rem;
   transition: transform var(--ease-micro-max), box-shadow var(--ease-micro-max);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .testimonial-card:hover {
