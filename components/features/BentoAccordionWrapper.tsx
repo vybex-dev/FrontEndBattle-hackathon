@@ -29,6 +29,7 @@ const FEATURES = [
     iconAlt: 'Gear icon representing automation',
     span: 'span-2',
     accentColor: '#FFC801',
+    image: '/images/bento/automation.png',
   },
   {
     id: 'analytics',
@@ -40,6 +41,7 @@ const FEATURES = [
     iconAlt: 'Pie chart icon representing analytics',
     span: '',
     accentColor: '#FF9932',
+    image: '/images/bento/analytics.png',
   },
   {
     id: 'integrations',
@@ -51,6 +53,7 @@ const FEATURES = [
     iconAlt: 'Link icon representing integrations',
     span: '',
     accentColor: '#FFC801',
+    image: '/images/bento/integrations.png',
   },
   {
     id: 'search',
@@ -62,6 +65,7 @@ const FEATURES = [
     iconAlt: 'Magnifying glass icon representing search',
     span: '',
     accentColor: '#FF9932',
+    image: '/images/bento/search.png',
   },
   {
     id: 'sync',
@@ -73,6 +77,7 @@ const FEATURES = [
     iconAlt: 'Circular arrows icon representing data sync',
     span: 'span-2',
     accentColor: '#FFC801',
+    image: '/images/bento/sync.png',
   },
 ];
 
@@ -144,24 +149,34 @@ export default function BentoAccordionWrapper() {
             onClick={() => handleBentoClick(idx)}
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBentoClick(idx); } }}
           >
-            <div className="p-6 h-full flex flex-col">
-              {/* Icon + accent strip */}
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 flex-shrink-0"
-                style={{ background: `${feat.accentColor}18`, border: `1px solid ${feat.accentColor}30` }}
-              >
-                <Image
-                  src={feat.icon}
-                  alt={feat.iconAlt}
-                  width={24}
-                  height={24}
-                  className="brightness-[10]"
-                  style={{ filter: `drop-shadow(0 0 6px ${feat.accentColor}80)` }}
-                />
+            <div className="p-6 h-full flex flex-col relative z-10 group">
+              {/* Premium Image Header */}
+              <div className="w-full h-32 md:h-48 mb-6 rounded-lg overflow-hidden relative border border-border-subtle group-hover:border-[var(--accent)] transition-colors duration-500" style={{ '--accent': `${feat.accentColor}50` } as any}>
+                 <Image src={feat.image} alt={feat.title} fill className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                 {/* Fade gradient so it blends into the card body */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-transparent to-transparent opacity-80 pointer-events-none"></div>
               </div>
 
-              <h3 className="font-mono font-bold text-lg text-arctic-powder mb-1">{feat.title}</h3>
-              <p className="text-mystic-mint text-sm mb-4 font-sans">{feat.tagline}</p>
+              {/* Icon + Title Row */}
+              <div className="flex items-start gap-4 mb-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-500 group-hover:scale-110"
+                  style={{ background: `${feat.accentColor}18`, border: `1px solid ${feat.accentColor}30` }}
+                >
+                  <Image
+                    src={feat.icon}
+                    alt={feat.iconAlt}
+                    width={24}
+                    height={24}
+                    className="brightness-[10]"
+                    style={{ filter: `drop-shadow(0 0 6px ${feat.accentColor}80)` }}
+                  />
+                </div>
+                <div>
+                  <h3 className="font-mono font-bold text-lg text-arctic-powder mb-1">{feat.title}</h3>
+                  <p className="text-mystic-mint text-sm font-sans">{feat.tagline}</p>
+                </div>
+              </div>
 
               {/* Expandable detail */}
               <div className="bento-detail">

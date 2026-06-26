@@ -119,7 +119,7 @@ export default function HeroSection() {
           </div>
 
           {/* Social proof logos strip */}
-          <div className="text-center reveal" style={{ transitionDelay: '300ms' }}>
+          <div className="text-center reveal mb-16 sm:mb-24" style={{ transitionDelay: '300ms' }}>
             <p className="text-mystic-mint text-xs uppercase tracking-widest mb-4 font-mono">
               Trusted by teams at
             </p>

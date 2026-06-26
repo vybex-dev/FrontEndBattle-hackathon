@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Inter } from 'next/font/google';
 import './globals.css';
+import CustomCursor from '@/components/CustomCursor';
 
 // ─── Brand Fonts (fonts.pdf spec) ────────────────────────────────────────────
 const jetbrainsMono = JetBrains_Mono({
@@ -114,6 +115,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-oceanic-noir text-arctic-powder font-sans antialiased overflow-x-hidden">
+        <CustomCursor />
         {children}
       </body>
     </html>
