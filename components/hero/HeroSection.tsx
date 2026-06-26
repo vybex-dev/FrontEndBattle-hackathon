@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, Variants } from 'framer-motion';
+
 import dynamic from 'next/dynamic';
 
 const NeuralSphere = dynamic(() => import('./NeuralSphere'), { ssr: false });
@@ -29,23 +29,7 @@ const TICKER_ITEMS = [
   '🌍 Global edge network',
 ];
 
-// Framer Motion variants (allowed in Hero per PDF rules)
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-  },
-};
 
-const itemVariants: Variants = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
-
-const fadeUp: Variants = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
 
 export default function HeroSection() {
   const orb1Ref = useRef<HTMLDivElement>(null);
@@ -74,43 +58,35 @@ export default function HeroSection() {
       <NeuralSphere />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="text-center max-w-5xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="text-center max-w-5xl mx-auto">
           {/* Badge */}
-          <motion.div variants={itemVariants} className="flex justify-center mb-6">
+          <div className="flex justify-center mb-6 reveal" style={{ transitionDelay: '50ms' }}>
             <span className="badge">
               <Image src="/svgs/arrow-trending-up.svg" alt="" width={12} height={12} className="brightness-[10]" aria-hidden="true" />
               Now with GPT-4o Turbo — 10× faster pipelines
             </span>
-          </motion.div>
+          </div>
 
           {/* H1 */}
-          <motion.h1
-            variants={itemVariants}
-            className="font-mono font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6"
+          <h1
+            className="font-mono font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6 reveal" style={{ transitionDelay: '100ms' }}
           >
             <span className="text-gradient-mint">Automate Everything.</span>
             <br />
             <span className="shimmer-text">Ship at Light Speed.</span>
-          </motion.h1>
+          </h1>
 
           {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className="text-mystic-mint text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed font-sans"
+          <p
+            className="text-mystic-mint text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed font-sans reveal" style={{ transitionDelay: '150ms' }}
           >
             NexusAI is the intelligence layer for modern data teams — automate complex workflows,
             eliminate bottlenecks, and scale from prototype to production without rewriting your stack.
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 reveal" style={{ transitionDelay: '200ms' }}
           >
             <a
               href="#pricing"
@@ -128,12 +104,11 @@ export default function HeroSection() {
               See how it works
               <Image src="/svgs/chevron-right.svg" alt="" width={16} height={16} className="brightness-[10]" aria-hidden="true" />
             </a>
-          </motion.div>
+          </div>
 
           {/* Stats row */}
-          <motion.div
-            variants={fadeUp}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-16"
+          <div
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-16 reveal" style={{ transitionDelay: '250ms' }}
           >
             {STATS.map(({ value, label }) => (
               <div key={label} className="text-center">
@@ -141,10 +116,10 @@ export default function HeroSection() {
                 <div className="text-mystic-mint text-sm font-sans">{label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Social proof logos strip */}
-          <motion.div variants={fadeUp} className="text-center">
+          <div className="text-center reveal" style={{ transitionDelay: '300ms' }}>
             <p className="text-mystic-mint text-xs uppercase tracking-widest mb-4 font-mono">
               Trusted by teams at
             </p>
@@ -155,8 +130,8 @@ export default function HeroSection() {
                 </span>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Ticker tape */}

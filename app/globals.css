@@ -162,6 +162,14 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes dash-flow {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-flow {
+  animation: dash-flow 1s linear infinite;
+}
+
 /* ─── Noise texture overlay ──────────────────────────────────────────────────── */
 .noise::after {
   content: '';
@@ -459,7 +467,7 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
 }
 
 .reveal.revealed {

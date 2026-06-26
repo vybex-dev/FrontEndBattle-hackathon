@@ -87,7 +87,7 @@ export default function SocialProof() {
         {/* Testimonials grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {TESTIMONIALS.map((t, i) => (
-            <blockquote key={i} className="testimonial-card reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+            <blockquote key={i} className="testimonial-card reveal" style={{ transitionDelay: `${i * 30}ms` }}>
               {/* Stars */}
               <div className="flex gap-0.5 mb-4" aria-label={`${t.rating} out of 5 stars`}>
                 {Array.from({ length: t.rating }).map((_, si) => (
