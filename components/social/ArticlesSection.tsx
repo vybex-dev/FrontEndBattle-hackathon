@@ -70,13 +70,21 @@ export default function ArticlesSection() {
           ))}
         </div>
 
-        {/* Access all link */}
-        <div className="mt-12 text-center sm:text-left reveal flex flex-col sm:flex-row items-center sm:justify-between gap-4 p-8 rounded-2xl glass border border-border-subtle">
-          <p className="text-mystic-mint font-sans">Access all our articles in one place.</p>
-          <button className="btn-outline">
-            View Articles
-            <Image src="/svgs/chevron-right.svg" alt="" width={16} height={16} className="brightness-[10]" aria-hidden="true" />
-          </button>
+        {/* Access all link + article nav */}
+        <div className="mt-12 reveal flex flex-col sm:flex-row items-center sm:justify-between gap-4 p-6 sm:p-8 rounded-2xl glass border border-border-subtle">
+          <p className="text-mystic-mint font-sans text-sm sm:text-base">Access all our articles in one place.</p>
+          <div className="flex items-center gap-3">
+            <button
+              className="flex items-center justify-center w-9 h-9 rounded-lg border border-border-subtle hover:border-forsythia/40 hover:bg-forsythia/10 transition-all duration-150 ease-out"
+              aria-label="Previous articles"
+            >
+              <Image src="/svgs/chevron-left.svg" alt="" width={16} height={16} className="brightness-[8]" aria-hidden="true" />
+            </button>
+            <button className="btn-outline text-sm py-2 px-4">
+              View All Articles
+              <Image src="/svgs/chevron-right.svg" alt="" width={16} height={16} className="brightness-[10]" aria-hidden="true" />
+            </button>
+          </div>
         </div>
 
       </div>

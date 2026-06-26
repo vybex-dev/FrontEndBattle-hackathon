@@ -160,16 +160,20 @@ export default function BentoAccordionWrapper() {
               {/* Icon + Title Row */}
               <div className="flex items-start gap-4 mb-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-500 group-hover:scale-110"
-                  style={{ background: `${feat.accentColor}18`, border: `1px solid ${feat.accentColor}30` }}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-110"
+                  style={{ 
+                    background: `${feat.accentColor}25`, 
+                    border: `1px solid ${feat.accentColor}50`,
+                    boxShadow: `0 0 20px ${feat.accentColor}50, inset 0 0 10px ${feat.accentColor}30`
+                  }}
                 >
                   <Image
                     src={feat.icon}
                     alt={feat.iconAlt}
                     width={24}
                     height={24}
-                    className="brightness-[10]"
-                    style={{ filter: `drop-shadow(0 0 6px ${feat.accentColor}80)` }}
+                    className="brightness-[12]"
+                    style={{ filter: `drop-shadow(0 0 8px ${feat.accentColor})` }}
                   />
                 </div>
                 <div>
@@ -230,8 +234,12 @@ export default function BentoAccordionWrapper() {
               >
                 <span className="flex items-center gap-3">
                   <span
-                    className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: `${feat.accentColor}18` }}
+                    className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm"
+                    style={{ 
+                      background: `${feat.accentColor}25`,
+                      border: `1px solid ${feat.accentColor}40`,
+                      boxShadow: `0 0 12px ${feat.accentColor}40`
+                    }}
                     aria-hidden="true"
                   >
                     <Image
@@ -239,7 +247,8 @@ export default function BentoAccordionWrapper() {
                       alt=""
                       width={18}
                       height={18}
-                      className="brightness-[10]"
+                      className="brightness-[12]"
+                      style={{ filter: `drop-shadow(0 0 6px ${feat.accentColor})` }}
                     />
                   </span>
                   <span className="font-mono font-semibold text-base">{feat.title}</span>

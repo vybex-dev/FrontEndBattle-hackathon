@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * PricingPriceNode — Feature 1 (State Isolation)
@@ -11,20 +11,20 @@
  * This satisfies the "Re-render & State Isolation Guardrail" (15 pts).
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import {
   BILLING_EVENT,
   CURRENCY_EVENT,
   type BillingPayload,
   type CurrencyPayload,
-} from './PricingControls';
+} from "./PricingControls";
 import {
   computePrice,
   formatPrice,
   type Tier,
   type Currency,
   type Cycle,
-} from '@/lib/pricing-matrix';
+} from "@/lib/pricing-matrix";
 
 interface Props {
   tier: Tier;
@@ -32,20 +32,25 @@ interface Props {
   initialCycle: Cycle;
 }
 
-export default function PricingPriceNode({ tier, initialCurrency, initialCycle }: Props) {
-  const priceRef    = useRef<HTMLSpanElement>(null);
-  const perRef      = useRef<HTMLSpanElement>(null);
+export default function PricingPriceNode({
+  tier,
+  initialCurrency,
+  initialCycle,
+}: Props) {
+  const priceRef = useRef<HTMLSpanElement>(null);
+  const perRef = useRef<HTMLSpanElement>(null);
   const currencyRef = useRef<{ currency: Currency; cycle: Cycle }>({
     currency: initialCurrency,
-    cycle:    initialCycle,
+    cycle: initialCycle,
   });
 
   const updateDisplay = (currency: Currency, cycle: Cycle) => {
-    const amount    = computePrice(tier, currency, cycle);
+    const amount = computePrice(tier, currency, cycle);
     const formatted = formatPrice(amount, currency);
     // Directly mutate the DOM text node — no React state change
-    if (priceRef.current)  priceRef.current.textContent  = formatted;
-    if (perRef.current)    perRef.current.textContent     = `/ ${cycle === 'annual' ? 'yr' : 'mo'}`;
+    if (priceRef.current) priceRef.current.textContent = formatted;
+    if (perRef.current)
+      perRef.current.textContent = `/ ${cycle === "annual" ? "mo (billed annually)" : "mo"}`;
   };
 
   useEffect(() => {
@@ -61,17 +66,17 @@ export default function PricingPriceNode({ tier, initialCurrency, initialCycle }
       updateDisplay(currency, currencyRef.current.cycle);
     };
 
-    document.addEventListener(BILLING_EVENT,  onBilling);
+    document.addEventListener(BILLING_EVENT, onBilling);
     document.addEventListener(CURRENCY_EVENT, onCurrency);
     return () => {
-      document.removeEventListener(BILLING_EVENT,  onBilling);
+      document.removeEventListener(BILLING_EVENT, onBilling);
       document.removeEventListener(CURRENCY_EVENT, onCurrency);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tier]);
 
   // Initial render values (SSR-safe)
-  const initialAmount    = computePrice(tier, initialCurrency, initialCycle);
+  const initialAmount = computePrice(tier, initialCurrency, initialCycle);
   const initialFormatted = formatPrice(initialAmount, initialCurrency);
 
   return (
@@ -85,11 +90,8 @@ export default function PricingPriceNode({ tier, initialCurrency, initialCycle }
       >
         {initialFormatted}
       </span>
-      <span
-        ref={perRef}
-        className="text-mystic-mint text-sm font-sans ml-1"
-      >
-        / mo
+      <span ref={perRef} className="text-mystic-mint text-sm font-sans ml-1">
+        {initialCycle === "annual" ? "/ mo (billed annually)" : "/ mo"}
       </span>
     </div>
   );

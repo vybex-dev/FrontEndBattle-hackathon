@@ -108,12 +108,19 @@ export default function HeroSection() {
 
           {/* Stats row */}
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-16 reveal" style={{ transitionDelay: '250ms' }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16 reveal" style={{ transitionDelay: '250ms' }}
           >
             {STATS.map(({ value, label }) => (
-              <div key={label} className="text-center">
-                <div className="stat-number mb-1">{value}</div>
-                <div className="text-mystic-mint text-sm font-sans">{label}</div>
+              <div key={label} className="relative group p-6 rounded-2xl glass border border-border-subtle hover:border-forsythia/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_-4px_rgba(255,200,1,0.1)] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-forsythia/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                  <div className="font-mono font-bold text-3xl sm:text-4xl text-forsythia mb-2 drop-shadow-[0_0_15px_rgba(255,200,1,0.3)] group-hover:scale-105 transition-transform duration-300">
+                    {value}
+                  </div>
+                  <div className="text-mystic-mint text-xs sm:text-sm font-sans uppercase tracking-widest font-medium group-hover:text-arctic-powder transition-colors duration-300">
+                    {label}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

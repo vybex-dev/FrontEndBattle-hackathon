@@ -4,7 +4,7 @@
 
 /* ─── Brand CSS Custom Properties ──────────────────────────────────────────── */
 :root {
-  --color-bg:           #050505; /* Pure dark theme background */
+  --color-bg:           #172B36; /* Oceanic Noir — required brand palette */
   --color-nocturnal:    #114C5A;
   --color-surface:      #172B36; /* Oceanic Noir for elevated surfaces */
   --color-surface-2:    #114C5A; /* Nocturnal Expedition */

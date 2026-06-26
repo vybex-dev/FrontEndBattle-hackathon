@@ -68,45 +68,46 @@ export default function WorkflowBuilderSection() {
           </div>
 
           {/* Canvas Wrapper */}
-          <div className="absolute inset-0 pt-12 p-4 md:p-8 overflow-hidden">
-            
-            {/* SVG Connections */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-              <defs>
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(255,200,1,0.1)" />
-                  <stop offset="50%" stopColor="rgba(255,200,1,0.8)" />
-                  <stop offset="100%" stopColor="rgba(255,200,1,0.1)" />
-                </linearGradient>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
+          <div className="absolute inset-0 pt-12 overflow-x-auto overflow-y-hidden">
+            <div className="relative w-full h-full min-w-[640px] p-4 md:p-8">
+              {/* SVG Connections */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+                <defs>
+                  <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(255,200,1,0.1)" />
+                    <stop offset="50%" stopColor="rgba(255,200,1,0.8)" />
+                    <stop offset="100%" stopColor="rgba(255,200,1,0.1)" />
+                  </linearGradient>
+                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                
+                {/* Static background tracks */}
+                <path d="M 18% 32% L 48% 32%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
+                <path d="M 48% 32% L 78% 32%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
+                <path d="M 78% 32% C 88% 32%, 88% 62%, 78% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
+                <path d="M 78% 62% L 48% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
+                <path d="M 48% 62% L 18% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
+
+                {/* Animated flowing data lines */}
+                <path d="M 18% 32% L 48% 32%" stroke="url(#lineGrad)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" filter="url(#glow)" />
+                <path d="M 48% 32% L 78% 32%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
+                <path d="M 78% 32% C 88% 32%, 88% 62%, 78% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
+                <path d="M 78% 62% L 48% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
+                <path d="M 48% 62% L 18% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
+              </svg>
+
+              {/* Nodes */}
+              <WorkflowNode title="Email Trigger" subtitle="(IMAP)" icon="/svgs/arrow-path.svg" x={10} y={25} delay={0} />
+              <WorkflowNode title="AI Agent" subtitle="Node Agent" icon="/svgs/cog-8-tooth.svg" x={40} y={25} delay={0.5} highlighted={true} />
+              <WorkflowNode title="Code" subtitle="Manual" icon="/svgs/chevron-right.svg" x={70} y={25} delay={1.0} />
               
-              {/* Static background tracks */}
-              <path d="M 18% 32% L 48% 32%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
-              <path d="M 48% 32% L 78% 32%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
-              <path d="M 78% 32% C 88% 32%, 88% 62%, 78% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
-              <path d="M 78% 62% L 48% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
-              <path d="M 48% 62% L 18% 62%" stroke="rgba(217, 232, 226, 0.05)" strokeWidth="3" fill="none" />
-
-              {/* Animated flowing data lines */}
-              <path d="M 18% 32% L 48% 32%" stroke="url(#lineGrad)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" filter="url(#glow)" />
-              <path d="M 48% 32% L 78% 32%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
-              <path d="M 78% 32% C 88% 32%, 88% 62%, 78% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
-              <path d="M 78% 62% L 48% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
-              <path d="M 48% 62% L 18% 62%" stroke="rgba(255,200,1,0.4)" strokeWidth="3" fill="none" strokeDasharray="8 8" className="animate-flow" />
-            </svg>
-
-            {/* Nodes */}
-            <WorkflowNode title="Email Trigger" subtitle="(IMAP)" icon="/svgs/arrow-path.svg" x={10} y={25} delay={0} />
-            <WorkflowNode title="AI Agent" subtitle="Node Agent" icon="/svgs/cog-8-tooth.svg" x={40} y={25} delay={0.5} highlighted={true} />
-            <WorkflowNode title="Code" subtitle="Manual" icon="/svgs/chevron-right.svg" x={70} y={25} delay={1.0} />
-            
-            <WorkflowNode title="Edit Fields" subtitle="Manual" icon="/svgs/link.svg" x={70} y={55} delay={1.5} />
-            <WorkflowNode title="IF" subtitle="Condition" icon="/svgs/arrow-trending-up.svg" x={40} y={55} delay={2.0} />
-            <WorkflowNode title="Send Email" subtitle="Send" icon="/svgs/arrow-path.svg" x={10} y={55} delay={2.5} />
+              <WorkflowNode title="Edit Fields" subtitle="Manual" icon="/svgs/link.svg" x={70} y={55} delay={1.5} />
+              <WorkflowNode title="IF" subtitle="Condition" icon="/svgs/arrow-trending-up.svg" x={40} y={55} delay={2.0} />
+              <WorkflowNode title="Send Email" subtitle="Send" icon="/svgs/arrow-path.svg" x={10} y={55} delay={2.5} />
+            </div>
           </div>
         </div>
       </div>

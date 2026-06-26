@@ -100,18 +100,35 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Scroll-to-top button (chevron-up.svg) — visible when scrolled */}
+        {scrolled && (
+          <button
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg border border-border-subtle hover:border-forsythia/40 hover:bg-forsythia/10 transition-all duration-150 ease-out"
+            aria-label="Scroll back to top"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <Image src="/svgs/chevron-up.svg" alt="" width={16} height={16} className="brightness-[8]" aria-hidden="true" />
+          </button>
+        )}
+
+        {/* Mobile hamburger / x-mark close */}
         <button
           ref={btnRef}
-          className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-forsythia"
+          className="md:hidden flex items-center justify-center w-9 h-9 p-2 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-forsythia"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen(prev => !prev)}
         >
-          <span className={`block w-5 h-0.5 bg-arctic-powder transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-5 h-0.5 bg-arctic-powder transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-0.5 bg-arctic-powder transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          {menuOpen ? (
+            <Image src="/svgs/x-mark.svg" alt="" width={20} height={20} className="brightness-[8]" aria-hidden="true" />
+          ) : (
+            <span className="flex flex-col gap-1.5" aria-hidden="true">
+              <span className="block w-5 h-0.5 bg-arctic-powder" />
+              <span className="block w-5 h-0.5 bg-arctic-powder" />
+              <span className="block w-5 h-0.5 bg-arctic-powder" />
+            </span>
+          )}
         </button>
       </nav>
 
