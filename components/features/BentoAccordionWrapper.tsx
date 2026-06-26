@@ -14,6 +14,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import Image from 'next/image';
 
 // ─── Feature data ─────────────────────────────────────────────────────────────
@@ -90,15 +91,27 @@ export default function BentoAccordionWrapper() {
       const nowMobile = e.matches;
       const prevMobile = isMobile;
 
-      setIsMobile(nowMobile);
+      const updateState = () => {
+        setIsMobile(nowMobile);
 
-      // Context transfer: crossing desktop→mobile with an active hover
-      if (nowMobile && !prevMobile && hoverIndexRef.current !== null) {
-        setActiveIndex(hoverIndexRef.current);
-      }
-      // Crossing mobile→desktop: clear accordion state
-      if (!nowMobile && prevMobile) {
-        setActiveIndex(null);
+        // Context transfer: crossing desktop→mobile with an active hover
+        if (nowMobile && !prevMobile && hoverIndexRef.current !== null) {
+          setActiveIndex(hoverIndexRef.current);
+        }
+        // Crossing mobile→desktop: clear accordion state
+        if (!nowMobile && prevMobile) {
+          setActiveIndex(null);
+        }
+      };
+
+      if (!document.startViewTransition) {
+        updateState();
+      } else {
+        document.startViewTransition(() => {
+          flushSync(() => {
+            updateState();
+          });
+        });
       }
     };
 
